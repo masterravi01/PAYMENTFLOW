@@ -1,10 +1,9 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, retry, throwError } from 'rxjs';
+import { Observable, Subject, retry, throwError, catchError } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 import * as CryptoJS from "crypto-js";
 
 @Injectable({

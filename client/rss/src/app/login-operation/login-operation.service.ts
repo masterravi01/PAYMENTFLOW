@@ -1,10 +1,9 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, retry, throwError } from 'rxjs';
+import { Observable, Subject, retry, throwError, catchError } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 import * as CryptoJS from "crypto-js";
 
 @Injectable({
@@ -52,7 +51,22 @@ export class LoginOperationService {
       .post(this.BaseURL + '/login/checkUserExist', data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
-
+  forgotPassword(data: any) {
+    return this._http
+      .post(this.BaseURL + '/login/forgot_password', data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  checkResetToken(data: any) {
+    return this._http
+      .post(this.BaseURL + '/login/check_reset_token', data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  resetPassword(data: any) {
+    if (data.User?.Password) data.User.Password = this.encrypt(data.User.Password);
+    return this._http
+      .post(this.BaseURL + '/login/reset_password', data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
   private handleError(error: HttpErrorResponse) {
     console.log(error);
     if (

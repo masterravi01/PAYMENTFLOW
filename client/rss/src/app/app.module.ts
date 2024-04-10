@@ -15,6 +15,7 @@ import { ErrorComponent } from './error/error.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { ModalContentComponent } from './modal-content/modal-content.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     DashboardComponent,
     UserCardComponent,
     PortfolioComponent,
+    ModalContentComponent,
   ],
   imports: [
     BrowserModule,
