@@ -1,0 +1,35 @@
+<br />
+<ng-container *ngIf="userProfile">
+    <div>Welcome, {{ userProfile.name }}</div>
+</ng-container>
+<div class="container">
+    <form [formGroup]="SignupForm" (ngSubmit)="signup()" class="login-form">
+        <div>
+            <label>Username:</label>
+            <input type="email" class="form-control " name="Email" formControlName="Email" />
+        </div>
+        <div>
+            <label>FirstName:</label>
+            <input type="text" class="form-control " formControlName="FirstName" name="FirstName" />
+        </div>
+        <div>
+            <label>LastName:</label>
+            <input type="text" class="form-control " formControlName="LastName" name="LastName" />
+        </div>
+        <div>
+            <label>Phone:</label>
+            <input type="text" class="form-control " formControlName="Phone" name="Phone" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" class="form-control " formControlName="Password" name="password" />
+        </div>
+        <div>
+            <label>ConfirmPassword:</label>
+            <input type="text" class="form-control " formControlName="ConfirmPassword" name="ConfirmPassword" />
+        </div>
+        <button type="submit">Login</button>
+
+
+    </form>
+</div>

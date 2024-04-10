@@ -1,0 +1,16 @@
+<div style="display: flex;flex-wrap: wrap;justify-content: space-between;margin: 0 20px;">
+
+    <div class="card" style="width: 18rem;margin-bottom: 10px;" *ngFor="let product of products">
+        <img class="card-img-top" [src]="product.image" alt="Card image cap" height="280" width="286">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <h3 class="card-title">Price: {{ product.price }}</h3>
+            <button type="button" class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+
+            <button type="button" class="btn btn-danger " style="margin-left: 4px;" (click)="buyNow(product)">Buy
+                Now</button>
+        </div>
+    </div>
+
+</div>
