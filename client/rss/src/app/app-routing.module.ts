@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LoginauthGuard } from './guards/loginauth.guard';
 
 const routes: Routes = [
   { path: 'checkout/:paymentOrderId', component: CheckoutComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'list', component: ProductListComponent },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [LoginauthGuard] },
   {
     path: 'loginop',
     loadChildren: () =>

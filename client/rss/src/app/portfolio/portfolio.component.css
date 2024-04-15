@@ -335,6 +335,18 @@ nav ul li a:hover::after {
     background: #ff004f;
 }
 
+/* #testimonials {
+    position: sticky;
+    top: 0;
+}
+
+#contact {
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(to right, #ffa62e, #ff2900);
+} */
+
 .contact-col-1 {
     flex-basis: 35%;
 }

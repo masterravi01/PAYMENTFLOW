@@ -1,8 +1,17 @@
+<ng-container *ngIf="userProfile">
+    <h2>User logged in successfully</h2>
+    <br />
+    <div>Welcome, {{ userProfile.name }}</div>
+    <app-user-card [userProfile]="userProfile"></app-user-card>
+    <button id="signout-button" (click)="handleSignOut()">Sign Out</button>
+</ng-container>
+
+
+
 <h2>User logged in successfully</h2>
 <br />
 <p>dashboard works!</p>
-<ng-container *ngIf="userProfile">
-    <div>Welcome, {{ userProfile.name }}</div>
-    <app-user-card [userProfile]="userProfile"></app-user-card>
+<ng-container *ngIf="UserData">
+    <div>Welcome, {{ UserData?.Name?.First }} {{UserData?.Name?.Last}}</div>
+    <app-user-card [userProfile]="userProfile" [UserData]="UserData"></app-user-card>
 </ng-container>
-<button id="signout-button" (click)="handleSignOut()">Sign Out</button>

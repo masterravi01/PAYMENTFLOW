@@ -4,6 +4,8 @@ import { ProductService } from '../services/product.service';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from '../services/global.service';
+import { UserData } from '../UserData/userdata';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +16,13 @@ export class LoginComponent {
   public username: string = "";
   public password: string = "";
   LoginForm: FormGroup | any;
+  UserData: UserData | undefined;
 
   constructor(
     private _PS: ProductService,
     private _ModalService: NgbModal,
-    private _GS: GlobalService
+    private _GS: GlobalService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,19 +50,24 @@ export class LoginComponent {
     console.log(`Username: ${this.username}, Password: ${this.password}`);
     let obj = JSON.parse(JSON.stringify(this.LoginForm.value));
     this._PS.userLogin(obj).subscribe(
-      (data: any) => {
-        console.log(data.data.User);
-        this._GS
-          .openErrorMsg(
-            data.statusMessage
-          );
-      },
-      (error: any) => {
-        console.log(error);
-        this._GS
-          .openErrorMsg(
-            error.statusMessage
-          );
+      {
+        next: (data: any) => {
+          console.log(data.data.User);
+          this.UserData = new UserData();
+          this.UserData.setData(data.data.User, 'userdata');
+          this.router.navigateByUrl('/dashboard');
+          this._GS
+            .openErrorMsg(
+              data.statusMessage
+            );
+        },
+        error: (error: any) => {
+          console.log(error);
+          this._GS
+            .openErrorMsg(
+              error.statusMessage
+            );
+        }
       }
     );
   }

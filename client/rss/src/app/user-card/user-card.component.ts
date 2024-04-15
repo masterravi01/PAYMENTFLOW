@@ -9,7 +9,7 @@ export class UserCardComponent implements OnInit {
 
   constructor() { }
   @Input() userProfile: any;
-
+  @Input() UserData: any;
   ngOnInit() {
   }
 

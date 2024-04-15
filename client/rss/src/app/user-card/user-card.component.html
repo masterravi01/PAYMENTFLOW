@@ -1,4 +1,4 @@
-<div class="user-card">
+<div class="user-card" *ngIf="userProfile">
     <div class="profile-photo">
         <img [src]="userProfile.picture" alt="Profile Photo" />
     </div>
@@ -6,5 +6,16 @@
         <h2>{{ userProfile.given_name }} {{ userProfile.family_name }}</h2>
         <p>{{ userProfile.email }}</p>
         <p>ID: {{ userProfile.sub }}</p>
+    </div>
+</div>
+<div class="user-card" *ngIf="UserData">
+    <div class="profile-photo">
+        <img [src]="UserData.ProfilePic?UserData.ProfilePic:'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'"
+            alt="Profile Photo" />
+    </div>
+    <div class="user-info">
+        <h2>{{ UserData?.Name?.First }} {{UserData?.Name?.Last}}</h2>
+        <p>{{ UserData?.Email }}</p>
+        <p>ID: {{ UserData?.GoogleSubId }}</p>
     </div>
 </div>

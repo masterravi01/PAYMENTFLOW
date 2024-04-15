@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { UserData } from '../UserData/userdata';
 declare var handleSignout: any; // Declare the global function to avoid TypeScript errors
 
 @Component({
@@ -10,8 +11,15 @@ declare var handleSignout: any; // Declare the global function to avoid TypeScri
 export class DashboardComponent implements OnInit {
   constructor(private router: Router) { }
   userProfile: any;
+  UserData: any;
+
   ngOnInit() {
-    this.userProfile = JSON.parse(sessionStorage.getItem("loggedInUser") || "");
+    this.UserData = new UserData().getData('userdata');
+    if (sessionStorage.getItem("loggedInUser")) {
+
+      this.userProfile = JSON.parse(sessionStorage.getItem("loggedInUser") || "");
+    }
+
   }
   handleSignOut() {
     handleSignout();
