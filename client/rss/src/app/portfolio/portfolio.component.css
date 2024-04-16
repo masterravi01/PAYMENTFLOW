@@ -45,11 +45,6 @@ h1 span.stop-blinking::before {
     padding: 4px;
 }
 
-@keyframes blink {
-    50% {
-        opacity: 0
-    }
-}
 
 .main-body {
     background: var(--background-color);
@@ -154,6 +149,15 @@ nav ul li a:hover::after {
 
 .about-col-2 {
     flex-basis: 60%;
+
+}
+
+.about-animation-2 {
+    animation: slideInRight 1s forwards;
+}
+
+.about-animation-1 {
+    animation: slideInLeft 1s forwards;
 }
 
 .tab-titles {
@@ -204,6 +208,7 @@ nav ul li a:hover::after {
 
 .tab-contents.active-tab {
     display: block;
+    animation: slideInLeft 1s forwards;
 }
 
 #services {
@@ -598,5 +603,61 @@ form .btn2 {
 
     .links {
         margin-right: 20px;
+    }
+}
+
+/* keyframes */
+
+@keyframes blink {
+    50% {
+        opacity: 0
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

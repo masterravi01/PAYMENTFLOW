@@ -48,11 +48,42 @@ export class PortfolioComponent implements OnInit {
     }
   }
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: any) {
+  onScroll() {
     const scrollPos = window.scrollY;
-    const rotation = scrollPos / 5; // You can adjust the speed of rotation by changing the divisor
+    const rotation = scrollPos / 5;
     this.circleElement.nativeElement.style.transform = `rotate(${rotation}deg)`;
+    const box = document.querySelector('.tab-titles');
+    const abouttab = document.getElementById('about');
+    if (abouttab) {
+      const aboutPosition = abouttab.getBoundingClientRect().top;
+      const screenHeight = window.innerHeight;
+      if (aboutPosition + 120 < screenHeight) {
+
+        const targetTab1 = document.querySelector('.about-col-1');
+        if (targetTab1) {
+          targetTab1.classList.add('about-animation-1');
+        }
+        const targetTab2 = document.querySelector('.about-col-2');
+        if (targetTab2) {
+          targetTab2.classList.add('about-animation-2');
+        }
+      }
+    }
+    if (box) {
+      const boxPosition = box.getBoundingClientRect().top;
+      const screenHeight = window.innerHeight;
+      if (boxPosition + 30 < screenHeight) {
+        const activeLink = document.querySelector('.link-active') as HTMLElement;
+        if (activeLink) {
+          const targetTab = document.getElementById(activeLink.innerText.toLowerCase());
+          if (targetTab) {
+            targetTab.classList.add('active-tab');
+          }
+        }
+      }
+    }
   }
+
   typeEffect(): void {
     const currentWord: string = this.words[this.wordIndex];
     const currentChar: string = currentWord.substring(0, this.charIndex);
@@ -90,32 +121,28 @@ export class PortfolioComponent implements OnInit {
     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   }
   opentab(tabname: string, event: Event) {
-    let tablinks: Element[] = Array.from(document.getElementsByClassName('links'));
-    let tabcont: Element[] = Array.from(document.getElementsByClassName('tab-contents'));
-    for (let l of tablinks) {
-      l.classList.remove('link-active');
-    }
-    for (let t of tabcont) {
-      t.classList.remove('active-tab');
-    }
-    (event.currentTarget as HTMLElement).classList.add('link-active');
-    let c: HTMLElement | null = document.getElementById(tabname);
-    if (c) {
-      c.classList.add('active-tab');
+    const tablinks = document.querySelectorAll('.links');
+    tablinks.forEach(link => link.classList.remove('link-active'));
+    const tabcont = document.querySelectorAll('.tab-contents');
+    tabcont.forEach(tab => tab.classList.remove('active-tab'));
+    (event.target as HTMLElement).classList.add('link-active');
+    const targetTab = document.getElementById(tabname);
+    if (targetTab) {
+      targetTab.classList.add('active-tab');
     }
   }
+
   closeNav() {
-    let c: HTMLElement | null = document.getElementById('sidebar');
-    if (c) {
-      c.style.right = "-200px"
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+      sidebar.style.right = "-200px"
     }
   }
   openNav() {
-    let c: HTMLElement | null = document.getElementById('sidebar');
-    if (c) {
-      c.style.right = "0"
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+      sidebar.style.right = "0"
     }
-
   }
 
 }
