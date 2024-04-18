@@ -71,6 +71,17 @@ nav {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    z-index: 1000;
+    transition: top 0.3s; */
+}
+
+.hide {
+    top: -60px;
 }
 
 .logo {
@@ -153,7 +164,7 @@ nav ul li a:hover::after {
 }
 
 .about-animation-2 {
-    animation: slideInRight 1s forwards;
+    animation: slideInBottom 1s forwards;
 }
 
 .about-animation-1 {
@@ -276,6 +287,7 @@ nav ul li a:hover::after {
     width: 100%;
     border-radius: 10px;
     display: block;
+    aspect-ratio: 16 / 12;
     transition: transform 0.5s;
 }
 
@@ -292,19 +304,19 @@ nav ul li a:hover::after {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0, 40px;
     text-align: center;
+    padding: 0 15px;
     transition: height 0.5s;
 }
 
 .layer h3 {
     font-weight: 500;
-    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .layer a {
     font-weight: 500;
-    margin-top: 20px;
+    margin-top: 0;
     height: 40px;
     width: 40px;
     background: var(--background-color);
@@ -313,6 +325,10 @@ nav ul li a:hover::after {
 
 .layer a svg {
     margin-top: 10px;
+}
+
+.layer p {
+    font-size: 13px;
 }
 
 .work:hover img {
@@ -340,7 +356,7 @@ nav ul li a:hover::after {
     background: #ff004f;
 }
 
-/* #testimonials {
+#testimonials {
     position: sticky;
     top: 0;
 }
@@ -350,7 +366,7 @@ nav ul li a:hover::after {
     position: relative;
     z-index: 1;
     background: linear-gradient(to right, #ffa62e, #ff2900);
-} */
+}
 
 .contact-col-1 {
     flex-basis: 35%;

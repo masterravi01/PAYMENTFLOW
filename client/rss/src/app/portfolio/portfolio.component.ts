@@ -21,6 +21,9 @@ export class PortfolioComponent implements OnInit {
   @HostBinding('style.--card-color')
   cardColor: string = '#262626';
 
+  hideNavbar: boolean = false;
+  prevScrollPos: number = window.pageYOffset;
+
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
   ngOnInit(): void {
     this.dynamicText = document.querySelector<HTMLSpanElement>('h1 span');
@@ -57,7 +60,7 @@ export class PortfolioComponent implements OnInit {
     if (abouttab) {
       const aboutPosition = abouttab.getBoundingClientRect().top;
       const screenHeight = window.innerHeight;
-      if (aboutPosition + 120 < screenHeight) {
+      if (aboutPosition + 280 < screenHeight) {
 
         const targetTab1 = document.querySelector('.about-col-1');
         if (targetTab1) {
@@ -72,7 +75,7 @@ export class PortfolioComponent implements OnInit {
     if (box) {
       const boxPosition = box.getBoundingClientRect().top;
       const screenHeight = window.innerHeight;
-      if (boxPosition + 30 < screenHeight) {
+      if (boxPosition + 50 < screenHeight) {
         const activeLink = document.querySelector('.link-active') as HTMLElement;
         if (activeLink) {
           const targetTab = document.getElementById(activeLink.innerText.toLowerCase());
@@ -82,6 +85,14 @@ export class PortfolioComponent implements OnInit {
         }
       }
     }
+
+    const currentScrollPos = window.pageYOffset;
+    if (this.prevScrollPos > currentScrollPos || currentScrollPos === 0) {
+      this.hideNavbar = false;
+    } else {
+      this.hideNavbar = true;
+    }
+    this.prevScrollPos = currentScrollPos;
   }
 
   typeEffect(): void {
