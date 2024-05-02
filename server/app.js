@@ -18,8 +18,19 @@ app.use(
     })
 );
 
+// base url
+app.get("/rsp/", (req, res) => {
+    return res.status(200).json({
+        success: true,
+        message: "server is up and running!",
+    });
+});
+
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
+
+let indexRouter = require("./routes/index");
+app.use("/rsp", indexRouter);
 
 // angular link
 var distDir = "./public";
@@ -30,16 +41,9 @@ app.get("/*", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-// base url
-app.get("/rsp/", (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: "server is up and running!",
-    });
-});
 
-let indexRouter = require("./routes/index");
-app.use("/rsp", indexRouter);
+
+
 
 var instance = new Razorpay({
     key_id: process.env.Razor_key_id,
