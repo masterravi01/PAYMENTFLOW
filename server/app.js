@@ -26,6 +26,7 @@ var distDir = "./public";
 app.use(express.static(distDir));
 
 app.get("/*", (req, res) => {
+    console.log(__dirname + "/public/index.html")
     res.sendFile(__dirname + "/public/index.html");
 });
 
