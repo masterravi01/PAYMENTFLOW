@@ -21,6 +21,14 @@ app.use(
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
+// angular link
+var distDir = "./public";
+app.use(express.static(distDir));
+
+app.get("/*", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
+
 // base url
 app.get("/rsp/", (req, res) => {
     return res.status(200).json({
@@ -40,7 +48,7 @@ var instance = new Razorpay({
 app.post("/rsp/api/login", (req, res) => {
     // Handle POST request here
     console.log("login", req.body); // Print the POST request body to console
-    res.redirect('http://localhost:4201/dashboard/')
+    res.redirect('https://paymentflow.vercel.app/dashboard/')
 });
 
 app.post("/rsp/api/createPaymentOrder", (req, res) => {
