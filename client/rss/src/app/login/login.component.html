@@ -8,6 +8,8 @@
         <input type="password" class="form-control " formControlName="Password" name="password" />
     </div>
     <button type="submit">Login</button>
+    <a routerLink="loginop/signup">Sign Up</a>
+    <a routerLink="loginop/forgotpassword">forgotpassword</a>
 
     <br />
     <div id="g_id_onload" data-client_id="1077907309094-cp4uihhtslrimu7og7c0uqg2nb0hea47.apps.googleusercontent.com"
@@ -16,3 +18,32 @@
     <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_blue" data-text="signin_with"
         data-size="large" data-logo_alignment="left"></div>
 </form>
+
+<div class="container">
+    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email:</label>
+            <input type="email" class="form-control" formControlName="Email" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+            <div
+                *ngIf="LoginForm.controls['Email'].invalid && (LoginForm.controls['Email'].dirty || LoginForm.controls['Email'].touched)">
+                <div *ngIf="LoginForm.controls['Email'].errors.required">Username is required.</div>
+            </div>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="Password">
+            <div
+                *ngIf="LoginForm.controls['Password'].invalid && (LoginForm.controls['Password'].dirty || LoginForm.controls['Password'].touched)">
+                <div *ngIf="LoginForm.controls['Password'].errors.required">Password is required.</div>
+            </div>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="LoginForm.invalid">Submit</button>
+    </form>
+
+</div>
