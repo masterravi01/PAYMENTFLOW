@@ -31,7 +31,7 @@ app.post("/rsp/sendmail", async (req, res) => {
         //     headers: {
         //         accept: 'application/json',
         //         'content-type': 'application/json',
-        //         'api-key': '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'
+        //         'api-key': process.env.Brevo_api_key
         //     },
         //     data: {
         //         sender: { name: 'Don King', email: 'raviparmar2288@gmail.com' },
@@ -57,8 +57,8 @@ app.post("/rsp/sendmail", async (req, res) => {
             host: 'smtp-relay.brevo.com',
             port: 587, // Brevo SMTP port
             auth: {
-                user: 'raviparmar2288@gmail.com', // Your Brevo email address
-                pass: 'MHEbhyjQ9fP0J1dN' // Your Brevo password
+                user: process.env.Brevo_User, // Your Brevo email address
+                pass: process.env.Brevo_User_Password // Your Brevo password
             }
         });
 
