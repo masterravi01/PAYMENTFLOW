@@ -50,8 +50,11 @@ app.post("/rsp/sendmail", async (req, res) => {
         //         console.error(error);
         //     });
 
-
-
+        console.log('1')
+        console.log({
+            user: process.env.Brevo_User, // Your Brevo email address
+            pass: process.env.Brevo_User_Password // Your Brevo password
+        })
         // Create a transporter using Brevo SMTP settings
         const transporter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
@@ -61,7 +64,7 @@ app.post("/rsp/sendmail", async (req, res) => {
                 pass: process.env.Brevo_User_Password // Your Brevo password
             }
         });
-
+        console.log('4')
         // Email data
         const mailOptions = {
             from: 'raviparmar2288@gmail.com',
@@ -70,9 +73,10 @@ app.post("/rsp/sendmail", async (req, res) => {
             html: '<!DOCTYPE html> <html lang="en"> <head>   <meta charset="UTF-8">   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <title>Email Template</title>   <style>     /* Reset CSS */     body, html {       margin: 0;       padding: 0;       font-family: Arial, sans-serif;     }     /* Main container */     .container {       max-width: 600px;       margin: 0 auto;       padding: 20px;     }     /* Header */     .header {       text-align: center;       margin-bottom: 20px;     }     /* Body */     .body {       margin-bottom: 20px;     }     /* Footer */     .footer {       text-align: center;       font-size: 12px;     }   </style> </head> <body>   <div class="container">     <div class="header">       <h1>Your Email Subject</h1>     </div>     <div class="body">       <p>Hello,</p>       <p>This is the body of your email. You can write your message here.</p>       <p>Sincerely,</p>       <p>Your Name</p>     </div>     <div class="footer">       <p>This is the footer of the email.</p>     </div>   </div> </body> </html>',
 
         };
-
+        console.log('5')
         // Send email
         transporter.sendMail(mailOptions, (error, info) => {
+            console.log('7')
             if (error) {
                 console.error('Error occurred:', error);
             } else {
@@ -80,9 +84,10 @@ app.post("/rsp/sendmail", async (req, res) => {
             }
         });
 
-
+        console.log('2')
         res.send({ data: data });
     } catch (error) {
+        console.log('3')
         console.log(error)
         res.send(error);
     }
