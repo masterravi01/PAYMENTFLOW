@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:4201/',
-  backendurl: 'http://localhost:8888/rsp',
+  url: 'https://paymentflow-frontend.vercel.app/',
+  backendurl: 'https://paymentflow.vercel.app/rsp',
   razor_key_id: "rzp_test_TCsXb2tz9OlpVk",
   razor_key_secret: "5sUdCZ5cP457FIZkF0fQnMmS",
   DECRYPT: "rsp2208shahi3122"
