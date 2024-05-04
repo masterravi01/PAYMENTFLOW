@@ -124,7 +124,7 @@ let forgot_password = async function (req, res, next) {
             await User.findOneAndUpdate({ Email: body.Email }, { $set: update_obj });
 
             console.log(
-                `https://paymentflow.vercel.app/loginop/resetpassword/` + token
+                `http://localhost:4201/loginop/resetpassword/` + token
             );
 
             return res

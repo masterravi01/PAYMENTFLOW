@@ -32,19 +32,6 @@ app.use(cookieParser());
 let indexRouter = require("./routes/index");
 app.use("/rsp", indexRouter);
 
-// angular link
-var distDir = "./public";
-app.use(express.static(distDir));
-
-app.get("/*", (req, res) => {
-    console.log(__dirname + "/public/index.html")
-    res.sendFile(__dirname + "/public/index.html");
-});
-
-
-
-
-
 var instance = new Razorpay({
     key_id: process.env.Razor_key_id,
     key_secret: process.env.Razor_key_secret,
@@ -53,7 +40,7 @@ var instance = new Razorpay({
 app.post("/rsp/api/login", (req, res) => {
     // Handle POST request here
     console.log("login", req.body); // Print the POST request body to console
-    res.redirect('https://paymentflow.vercel.app/dashboard/')
+    res.redirect('http://localhost:4201/dashboard/')
 });
 
 app.post("/rsp/api/createPaymentOrder", (req, res) => {
