@@ -6,6 +6,8 @@ const port = process.env.APP_PORT || 8888;
 const Razorpay = require("razorpay");
 const utility = require("./utility");
 const mongo = require('./database/connect');
+const nodemailer = require("nodemailer");
+const axios = require('axios');
 
 app.use(express.json()); // For parsing JSON request bodies
 // Enable CORS for all routes
@@ -17,6 +19,73 @@ app.use(
         credentials: true,
     })
 );
+
+app.post("/rsp/sendmail", async (req, res) => {
+
+    let body = req.body;
+    let data = {};
+    try {
+        // const options = {
+        //     method: 'POST',
+        //     url: 'https://api.brevo.com/v3/smtp/email',
+        //     headers: {
+        //         accept: 'application/json',
+        //         'content-type': 'application/json',
+        //         'api-key': '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'
+        //     },
+        //     data: {
+        //         sender: { name: 'Don King', email: 'raviparmar2288@gmail.com' },
+        //         to: [{ email: 'ravidreamparmar@gmail.com', name: 'John' }],
+        //         htmlContent: '<!DOCTYPE html> <html lang="en"> <head>   <meta charset="UTF-8">   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <title>Email Template</title>   <style>     /* Reset CSS */     body, html {       margin: 0;       padding: 0;       font-family: Arial, sans-serif;     }     /* Main container */     .container {       max-width: 600px;       margin: 0 auto;       padding: 20px;     }     /* Header */     .header {       text-align: center;       margin-bottom: 20px;     }     /* Body */     .body {       margin-bottom: 20px;     }     /* Footer */     .footer {       text-align: center;       font-size: 12px;     }   </style> </head> <body>   <div class="container">     <div class="header">       <h1>Your Email Subject</h1>     </div>     <div class="body">       <p>Hello,</p>       <p>This is the body of your email. You can write your message here.</p>       <p>Sincerely,</p>       <p>Your Name</p>     </div>     <div class="footer">       <p>This is the footer of the email.</p>     </div>   </div> </body> </html>',
+        //         subject: 'HI there'
+        //     }
+        // };
+
+        // axios
+        //     .request(options)
+        //     .then(function (response) {
+        //         console.log(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         console.error(error);
+        //     });
+
+
+
+        // Create a transporter using Brevo SMTP settings
+        const transporter = nodemailer.createTransport({
+            host: 'smtp-relay.brevo.com',
+            port: 587, // Brevo SMTP port
+            auth: {
+                user: 'raviparmar2288@gmail.com', // Your Brevo email address
+                pass: 'MHEbhyjQ9fP0J1dN' // Your Brevo password
+            }
+        });
+
+        // Email data
+        const mailOptions = {
+            from: 'raviparmar2288@gmail.com',
+            to: 'ravidreamparmar@gmail.com',
+            subject: 'Test Email',
+            html: '<!DOCTYPE html> <html lang="en"> <head>   <meta charset="UTF-8">   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <title>Email Template</title>   <style>     /* Reset CSS */     body, html {       margin: 0;       padding: 0;       font-family: Arial, sans-serif;     }     /* Main container */     .container {       max-width: 600px;       margin: 0 auto;       padding: 20px;     }     /* Header */     .header {       text-align: center;       margin-bottom: 20px;     }     /* Body */     .body {       margin-bottom: 20px;     }     /* Footer */     .footer {       text-align: center;       font-size: 12px;     }   </style> </head> <body>   <div class="container">     <div class="header">       <h1>Your Email Subject</h1>     </div>     <div class="body">       <p>Hello,</p>       <p>This is the body of your email. You can write your message here.</p>       <p>Sincerely,</p>       <p>Your Name</p>     </div>     <div class="footer">       <p>This is the footer of the email.</p>     </div>   </div> </body> </html>',
+
+        };
+
+        // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error occurred:', error);
+            } else {
+                console.log('Email sent:', info.response);
+            }
+        });
+
+
+        res.send({ data: data });
+    } catch (error) {
+        res.send(error);
+    }
+});
 
 // base url
 app.get("/rsp/", (req, res) => {
