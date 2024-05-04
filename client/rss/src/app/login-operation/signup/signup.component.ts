@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginOperationService } from '../login-operation.service';
+import { UserData } from 'src/app/UserData/userdata';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,7 @@ import { LoginOperationService } from '../login-operation.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  UserData: UserData | undefined;
 
   constructor(private router: Router, private _LOS: LoginOperationService) { }
 
@@ -42,6 +44,8 @@ export class SignupComponent implements OnInit {
       this._LOS.checkUserExist(this.userProfile).subscribe((data: any) => {
         console.log(data);
         if (data.data.Users.length > 0) {
+          this.UserData = new UserData();
+          this.UserData.setData(data.data.Users[0], 'userdata');
           this.router.navigateByUrl(`/dashboard`);
         } else {
           this.SignupForm['controls']['FirstName'].setValue(this.userProfile?.given_name)
