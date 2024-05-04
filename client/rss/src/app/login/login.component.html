@@ -1,4 +1,4 @@
-<form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" class="login-form">
+<!-- <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" class="login-form">
     <div>
         <label>Username:</label>
         <input type="email" class="form-control " name="username" formControlName="Email" />
@@ -14,36 +14,62 @@
     <br />
     <div id="g_id_onload" data-client_id="1077907309094-cp4uihhtslrimu7og7c0uqg2nb0hea47.apps.googleusercontent.com"
         data-context="use" data-ux_mode="popup" data-itp_support="true" data-callback="handleCredentialResponse"></div>
-    <!-- data-auto-select="true" -->
+   
     <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_blue" data-text="signin_with"
         data-size="large" data-logo_alignment="left"></div>
 </form>
+ -->
 
-<div class="container">
-    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email:</label>
-            <input type="email" class="form-control" formControlName="Email" id="exampleInputEmail1"
-                aria-describedby="emailHelp">
-            <div
-                *ngIf="LoginForm.controls['Email'].invalid && (LoginForm.controls['Email'].dirty || LoginForm.controls['Email'].touched)">
-                <div *ngIf="LoginForm.controls['Email'].errors.required">Username is required.</div>
+<div class="container ">
+    <img src="https://png.pngtree.com/thumb_back/fh260/background/20210929/pngtree-silver-gray-abstract-background-image_908409.png"
+        class="cc" alt="">
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-4 col-md-6 col-sm-12 p-3"
+            style="background-color: #f3f3f3;border-radius: 10px;    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);">
+            <div class="fs-2 fw-bold">login</div>
+            <div class="">Doesn't have an account yet? <a routerLink="loginop/signup">Sign Up</a></div>
+            <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" class="mt-3">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" formControlName="Email" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="you@example.com">
+                    <div
+                        *ngIf="LoginForm.controls['Email'].invalid && (LoginForm.controls['Email'].dirty || LoginForm.controls['Email'].touched)">
+                        <div *ngIf="LoginForm.controls['Email'].errors.required">Username is required.</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <div> <label for="exampleInputPassword1" class="form-label">Password</label>
+                        </div>
+                        <div> <a routerLink="loginop/forgotpassword">forgotpassword?</a></div>
+                    </div>
+                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="Password"
+                        placeholder="Enter Password">
+                    <div
+                        *ngIf="LoginForm.controls['Password'].invalid && (LoginForm.controls['Password'].dirty || LoginForm.controls['Password'].touched)">
+                        <div *ngIf="LoginForm.controls['Password'].errors.required">Password is required.</div>
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me </label>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="LoginForm.invalid">Login</button>
+            </form>
+            <div class="line-with-text">
+                <span class="line-text">OR</span>
             </div>
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <br />
+            <div id="g_id_onload"
+                data-client_id="1077907309094-cp4uihhtslrimu7og7c0uqg2nb0hea47.apps.googleusercontent.com"
+                data-context="use" data-ux_mode="popup" data-itp_support="true"
+                data-callback="handleCredentialResponse"></div>
+
+            <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_blue"
+                data-text="signin_with" data-size="large" data-logo_alignment="left"></div>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="Password">
-            <div
-                *ngIf="LoginForm.controls['Password'].invalid && (LoginForm.controls['Password'].dirty || LoginForm.controls['Password'].touched)">
-                <div *ngIf="LoginForm.controls['Password'].errors.required">Password is required.</div>
-            </div>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="LoginForm.invalid">Submit</button>
-    </form>
+    </div>
+
 
 </div>
