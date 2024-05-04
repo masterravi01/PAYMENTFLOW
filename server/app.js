@@ -83,6 +83,7 @@ app.post("/rsp/sendmail", async (req, res) => {
 
         res.send({ data: data });
     } catch (error) {
+        console.log(error)
         res.send(error);
     }
 });
