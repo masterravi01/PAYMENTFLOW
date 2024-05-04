@@ -18,9 +18,6 @@ app.use(
     })
 );
 
-var cookieParser = require("cookie-parser");
-app.use(cookieParser());
-
 // base url
 app.get("/rsp/", (req, res) => {
     return res.status(200).json({
@@ -28,6 +25,9 @@ app.get("/rsp/", (req, res) => {
         message: "server is up and running!",
     });
 });
+
+var cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 let indexRouter = require("./routes/index");
 app.use("/rsp", indexRouter);
@@ -96,4 +96,3 @@ const start = async () => {
     }
 }
 start();
-
