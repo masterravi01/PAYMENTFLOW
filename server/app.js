@@ -40,8 +40,8 @@ app.post("/rsp/sendmail", async (req, res) => {
                 subject: 'HI there'
             }
         };
-
-        axios
+        console.log("b1")
+        await axios
             .request(options)
             .then(function (response) {
                 console.log(response.data);
@@ -50,7 +50,7 @@ app.post("/rsp/sendmail", async (req, res) => {
                 console.error(error);
             });
 
-
+        console.log("b2")
 
         // Create a transporter using Brevo SMTP settings
         const transporter = nodemailer.createTransport({
@@ -72,14 +72,15 @@ app.post("/rsp/sendmail", async (req, res) => {
         };
 
         // Send email
-        transporter.sendMail(mailOptions, (error, info) => {
+        console.log("b3")
+        await transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.error('Error occurred:', error);
             } else {
                 console.log('Email sent:', info.response);
             }
         });
-
+        console.log("b4")
 
         res.send({ data: data });
     } catch (error) {
