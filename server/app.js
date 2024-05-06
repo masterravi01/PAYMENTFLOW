@@ -54,7 +54,7 @@ app.post("/rsp/sendmail", async (req, res) => {
 
         // Create a transporter using Brevo SMTP settings
         const transporter = nodemailer.createTransport({
-            host: 'smtp-relay.sendinblue.com',
+            host: 'smtp-relay.brevo.com',
             port: 587, // Brevo SMTP port
             auth: {
                 user: process.env.Brevo_User, // Your Brevo email address
