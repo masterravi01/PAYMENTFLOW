@@ -73,12 +73,16 @@ app.post("/rsp/sendmail", async (req, res) => {
 
         // Send email
         console.log("b3")
-        await transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error('Error occurred:', error);
-            } else {
-                console.log('Email sent:', info.response);
-            }
+        await new Promise((resolve, reject) => {
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error occurred:', error);
+                    reject(error);
+                } else {
+                    console.log('Email sent:', info.response);
+                    resolve(info.response);
+                }
+            });
         });
         console.log("b4")
 
