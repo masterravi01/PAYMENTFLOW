@@ -25,36 +25,36 @@ app.post("/rsp/sendmail", async (req, res) => {
     let body = req.body;
     let data = {};
     try {
-        const options = {
-            method: 'POST',
-            url: 'https://api.brevo.com/v3/smtp/email',
-            headers: {
-                accept: 'application/json',
-                'content-type': 'application/json',
-                'api-key': process.env.Brevo_api_key
-            },
-            data: {
-                sender: { name: 'Don King', email: 'raviparmar2288@gmail.com' },
-                to: [{ email: 'ravidreamparmar@gmail.com', name: 'John' }],
-                htmlContent: '<!DOCTYPE html> <html lang="en"> <head>   <meta charset="UTF-8">   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <title>Email Template</title>   <style>     /* Reset CSS */     body, html {       margin: 0;       padding: 0;       font-family: Arial, sans-serif;     }     /* Main container */     .container {       max-width: 600px;       margin: 0 auto;       padding: 20px;     }     /* Header */     .header {       text-align: center;       margin-bottom: 20px;     }     /* Body */     .body {       margin-bottom: 20px;     }     /* Footer */     .footer {       text-align: center;       font-size: 12px;     }   </style> </head> <body>   <div class="container">     <div class="header">       <h1>Your Email Subject</h1>     </div>     <div class="body">       <p>Hello,</p>       <p>This is the body of your email. You can write your message here.</p>       <p>Sincerely,</p>       <p>Your Name</p>     </div>     <div class="footer">       <p>This is the footer of the email.</p>     </div>   </div> </body> </html>',
-                subject: 'HI there'
-            }
-        };
-        console.log("b1")
-        await axios
-            .request(options)
-            .then(function (response) {
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+        // const options = {
+        //     method: 'POST',
+        //     url: 'https://api.brevo.com/v3/smtp/email',
+        //     headers: {
+        //         accept: 'application/json',
+        //         'content-type': 'application/json',
+        //         'api-key': process.env.Brevo_api_key
+        //     },
+        //     data: {
+        //         sender: { name: 'Don King', email: 'raviparmar2288@gmail.com' },
+        //         to: [{ email: 'ravidreamparmar@gmail.com', name: 'John' }],
+        //         htmlContent: '<!DOCTYPE html> <html lang="en"> <head>   <meta charset="UTF-8">   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <title>Email Template</title>   <style>     /* Reset CSS */     body, html {       margin: 0;       padding: 0;       font-family: Arial, sans-serif;     }     /* Main container */     .container {       max-width: 600px;       margin: 0 auto;       padding: 20px;     }     /* Header */     .header {       text-align: center;       margin-bottom: 20px;     }     /* Body */     .body {       margin-bottom: 20px;     }     /* Footer */     .footer {       text-align: center;       font-size: 12px;     }   </style> </head> <body>   <div class="container">     <div class="header">       <h1>Your Email Subject</h1>     </div>     <div class="body">       <p>Hello,</p>       <p>This is the body of your email. You can write your message here.</p>       <p>Sincerely,</p>       <p>Your Name</p>     </div>     <div class="footer">       <p>This is the footer of the email.</p>     </div>   </div> </body> </html>',
+        //         subject: 'HI there'
+        //     }
+        // };
+        // console.log("b1")
+        // await axios
+        //     .request(options)
+        //     .then(function (response) {
+        //         console.log(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         console.error(error);
+        //     });
 
-        console.log("b2")
+        // console.log("b2")
 
         // Create a transporter using Brevo SMTP settings
         const transporter = nodemailer.createTransport({
-            host: 'smtp-relay.brevo.com',
+            host: 'smtp-relay.sendinblue.com',
             port: 587, // Brevo SMTP port
             auth: {
                 user: process.env.Brevo_User, // Your Brevo email address
