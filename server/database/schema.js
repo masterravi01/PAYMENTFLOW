@@ -38,7 +38,7 @@ const User_Schema = new Schema(
         },
         VerificationOTP: {
             OTP: Number,
-            UpdatedAt: Date,
+            Expires: Date,
         },
         ProfilePic: String,
         ResetPassword: {

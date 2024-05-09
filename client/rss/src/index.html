@@ -19,7 +19,7 @@
       // to decode the credential response.
       const responsePayload = decodeJWTToken(response.credential);
       sessionStorage.setItem("loggedInUser", JSON.stringify(responsePayload));
-      window.location.href = "/loginop/signup";
+      window.location.href = "/signup";
     }
     function handleSignout() {
       google.accounts.id.disableAutoSelect();

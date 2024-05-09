@@ -8,7 +8,7 @@ const utility = require("./utility");
 const mongo = require('./database/connect');
 const nodemailer = require("nodemailer");
 const axios = require('axios');
-
+// const emailtemplate = require('./controllers/emailtemplate')
 app.use(express.json()); // For parsing JSON request bodies
 // Enable CORS for all routes
 
@@ -25,6 +25,9 @@ app.post("/rsp/sendmail", async (req, res) => {
     let body = req.body;
     let data = {};
     try {
+
+        // let d = await emailtemplate.verify_otp(body);
+        // console.log(d);
         const options = {
             method: 'POST',
             url: 'https://api.brevo.com/v3/smtp/email',

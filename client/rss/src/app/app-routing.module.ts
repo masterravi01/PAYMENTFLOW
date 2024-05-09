@@ -12,6 +12,11 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginauthGuard } from './guards/loginauth.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./login-operation/login-operation.module').then((m) => m.LoginOperationModule),
+  },
   { path: 'checkout/:paymentOrderId', component: CheckoutComponent },
   { path: 'paymentfailed', component: FailureComponent },
   { path: 'paymentsuccess', component: SuccessComponent },
@@ -20,11 +25,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [LoginauthGuard] },
-  {
-    path: 'loginop',
-    loadChildren: () =>
-      import('./login-operation/login-operation.module').then((m) => m.LoginOperationModule),
-  },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
