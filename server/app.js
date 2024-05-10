@@ -115,7 +115,7 @@ var instance = new Razorpay({
 app.post("/rsp/api/login", (req, res) => {
     // Handle POST request here
     console.log("login", req.body); // Print the POST request body to console
-    res.redirect('http://localhost:4201/dashboard/')
+    res.redirect(`${process.env.Frontend_Url}dashboard/`)
 });
 
 app.post("/rsp/api/createPaymentOrder", (req, res) => {

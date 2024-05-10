@@ -4,14 +4,14 @@ let User = schema.User;
 
 
 let user_authentication = async function (req, res, next) {
-    if (!req.cookies.Token) {
+    if (!req.cookies.RSPToken) {
         return res.status(401).json({
             statusMessage: "Authentication token expired, please login again",
 
         });
     }
 
-    jwt.verify(req.cookies.Token, process.env.Jwt_secret, async (err, decode) => {
+    jwt.verify(req.cookies.RSPToken, process.env.Jwt_secret, async (err, decode) => {
         if (!err) {
 
             req.body.ActiveUserId = decode.ActiveUserId;
@@ -22,7 +22,7 @@ let user_authentication = async function (req, res, next) {
             //     process.env.Jwt_secret, { expiresIn: '7d' }
             // );
             // // set token in reponse cookie and send it to client
-            // res.cookie("Token", token, {
+            // res.cookie("RSPToken", token, {
             //     httpOnly: true,
             //     sameSite: "none",
             //     secure: true,
