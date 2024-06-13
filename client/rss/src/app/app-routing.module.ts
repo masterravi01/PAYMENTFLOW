@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginauthGuard } from './guards/loginauth.guard';
-
+import { ChatComponent } from './chat/chat.component';
 const routes: Routes = [
   {
     path: '',
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'list', component: ProductListComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'chat', component: ChatComponent },
   { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [LoginauthGuard] },
   { path: 'error', component: ErrorComponent },

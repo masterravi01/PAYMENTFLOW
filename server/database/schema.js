@@ -123,10 +123,18 @@ const Address_Schema = new Schema({
 
 const Address = mongoose.model('Address', Address_Schema);
 
+const messageSchema = new Schema({
+    user: String,
+    message: String,
+},
+    { timestamps: true }
+);
+const Message = mongoose.model('Message', messageSchema);
 module.exports = {
     User,
     Product,
     Order,
-    Address
+    Address,
+    Message
 }
 

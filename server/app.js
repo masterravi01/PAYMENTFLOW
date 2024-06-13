@@ -8,6 +8,8 @@ const utility = require("./utility");
 const mongo = require('./database/connect');
 const nodemailer = require("nodemailer");
 const axios = require('axios');
+const http = require('http');
+const socket = require('./controllers/socket')
 // const emailtemplate = require('./controllers/emailtemplate')
 app.use(express.json()); // For parsing JSON request bodies
 // Enable CORS for all routes
@@ -161,9 +163,13 @@ app.post("/rsp/api/validatePayment", (req, res) => {
     res.send({ data: { isPaymentVerfied: isPaymentVerfied } });
 });
 
+const server = http.createServer(app);
+
+socket.connection(server);
+
 const start = async () => {
     try {
-        app.listen(port, () => {
+        server.listen(port, () => {
             console.log(`Server listening at http://localhost:${port}/rsp/`);
         });
     } catch (error) {

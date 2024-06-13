@@ -17,6 +17,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
     PortfolioComponent,
     ModalContentComponent,
     VjsPlayerComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
