@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
+import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     UserCardComponent,
     PortfolioComponent,
     ModalContentComponent,
+    VjsPlayerComponent,
   ],
   imports: [
     BrowserModule,
