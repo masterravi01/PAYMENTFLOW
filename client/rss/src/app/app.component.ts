@@ -73,4 +73,38 @@ export class AppComponent implements OnInit {
         (err) => console.error('Could not send subscription to server', err)
       );
   }
+
+  //dumy body
+  //http://localhost:8888/rsp/api/sendNotification
+  //  {
+  //   "title": "New Offer",
+  //   "body": "Check out our new offer!",
+  //   "icon": "assets/icons/icon-384x384.png",
+  // "actions": [
+  //   {
+  //     "action": "bar",
+  //     "title": "Login"
+  //   },
+  //   {
+  //     "action": "baz",
+  //     "title": "Forgot"
+  //   }
+  // ],
+  // "data": {
+  //   "onActionClick": {
+  //     "default": {
+  //       "operation": "openWindow"
+  //     },
+  //     "bar": {
+  //       "operation": "focusLastFocusedOrOpen",
+  //       "url": "https://pms.ezyinn.net/login"
+  //     },
+  //     "baz": {
+  //       "operation": "navigateLastFocusedOrOpen",
+  //       "url": "https://pms.ezyinn.net/forgotpassword"
+  //     }
+  //   }
+  // }
+
+  // }
 }
