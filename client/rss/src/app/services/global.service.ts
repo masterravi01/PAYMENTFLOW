@@ -7,14 +7,10 @@ import { Observable } from 'rxjs';
 import { io } from 'socket.io-client';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalService {
-
-  constructor(
-    private _http: HttpClient,
-    private _ModalService: NgbModal,
-  ) { }
+  constructor(private _http: HttpClient, private _ModalService: NgbModal) {}
   BaseURL: string = environment.backendurl;
   httpOptions = {
     withCredentials: true,
@@ -36,7 +32,7 @@ export class GlobalService {
   }
 
   receiveMessages(): Observable<any> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       this.socket.on('receiveMessage', (data) => {
         observer.next(data);
       });

@@ -11,7 +11,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap')
   </style>
-  <script src="https://accounts.google.com/gsi/client" async></script>
+  <script src="https://accounts.google.com/gsi/client" async=""></script>
   <script>
     function decodeJWTToken(token) {
       return JSON.parse(atob(token.split(".")[1]));
@@ -26,12 +26,15 @@
       google.accounts.id.disableAutoSelect();
     }    
   </script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
 </head>
 
 <body>
   <app-root></app-root>
   <script src="//vjs.zencdn.net/8.3.0/video.min.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 
 </html>
