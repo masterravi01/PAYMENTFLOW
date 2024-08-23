@@ -5,8 +5,7 @@ const Message = schema.Message;
 const connection = async function (server) {
   const io = socketIo(server, {
     cors: {
-      origin: "https://paymentflow-frontend.vercel.app", // Angular app address
-      methods: ["GET", "POST"],
+      origin: "*",
     },
   });
 
