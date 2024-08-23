@@ -161,7 +161,7 @@ app.post("/rsp/api/validatePayment", (req, res) => {
 
 const server = http.createServer(app);
 
-// socket.connection(server);
+socket.connection(server);
 
 //push notification code start
 
