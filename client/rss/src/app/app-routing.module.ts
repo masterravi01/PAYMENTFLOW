@@ -10,21 +10,22 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginauthGuard } from './guards/loginauth.guard';
-
+import { ChatComponent } from './chat/chat.component';
 const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./login-operation/login-operation.module').then((m) => m.LoginOperationModule),
+  },
   { path: 'checkout/:paymentOrderId', component: CheckoutComponent },
   { path: 'paymentfailed', component: FailureComponent },
   { path: 'paymentsuccess', component: SuccessComponent },
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'list', component: ProductListComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'chat', component: ChatComponent },
   { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [LoginauthGuard] },
-  {
-    path: 'loginop',
-    loadChildren: () =>
-      import('./login-operation/login-operation.module').then((m) => m.LoginOperationModule),
-  },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];

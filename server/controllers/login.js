@@ -5,12 +5,14 @@ let jwt = require("jsonwebtoken");
 let decrypt = require("./decryption");
 let crypto = require("crypto");
 var bcrypt = require("bcryptjs");
+let emailtemplate = require('./emailtemplate')
+
 
 let user_login = async function (req, res, next) {
     let body = req.body;
     let data = {};
     try {
-        res.clearCookie("Token");
+        res.clearCookie("RSPToken");
         if (body.Password) body.Password = decrypt(body.Password);
         data.User = await User.findOne({
             Email: body.Email
@@ -22,7 +24,7 @@ let user_login = async function (req, res, next) {
             );
             // set token in reponse cookie and send it to client
             res.
-                cookie("Token", token, {
+                cookie("RSPToken", token, {
                     httpOnly: true,
                     sameSite: "none",
                     secure: true,
@@ -122,11 +124,11 @@ let forgot_password = async function (req, res, next) {
                 },
             }
             await User.findOneAndUpdate({ Email: body.Email }, { $set: update_obj });
-
+            let resetUrl = `${process.env.Frontend_Url}resetpassword/${token}`;
             console.log(
-                `http://localhost:4201/loginop/resetpassword/` + token
+                resetUrl
             );
-
+            let d = await emailtemplate.sendPasswordResetLink(body.Email, resetUrl);
             return res
                 .status(200)
                 .json({
@@ -203,7 +205,7 @@ let reset_password = async function (req, res, next) {
     let body = req.body;
     let data = {};
     try {
-        res.clearCookie("Token");
+        res.clearCookie("RSPToken");
         if (body.User?.Password) body.User.Password = decrypt(body.User.Password);
         body.User.Password = bcrypt.hashSync(body.User.Password, Number(process.env.SALT_WORK_FACTOR));
 

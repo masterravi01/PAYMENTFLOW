@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
+import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
+import { ChatComponent } from './chat/chat.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     UserCardComponent,
     PortfolioComponent,
     ModalContentComponent,
+    VjsPlayerComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +44,14 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

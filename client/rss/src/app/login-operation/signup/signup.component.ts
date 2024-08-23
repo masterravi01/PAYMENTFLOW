@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginOperationService } from '../login-operation.service';
 import { UserData } from 'src/app/UserData/userdata';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ import { UserData } from 'src/app/UserData/userdata';
 export class SignupComponent implements OnInit {
   UserData: UserData | undefined;
 
-  constructor(private router: Router, private _LOS: LoginOperationService) { }
+  constructor(private router: Router, private _LOS: LoginOperationService, private _GS: GlobalService,) { }
 
   userProfile: any;
   SignupForm: FormGroup | any;
@@ -65,11 +66,27 @@ export class SignupComponent implements OnInit {
   checkUser() {
 
   }
+
   signup() {
-    this._LOS.userSignup({ User: this.SignupForm?.value }).subscribe((data: any) => {
-      console.log(data);
-    }, (error: any) => {
-      console.log(error);
-    });
+    this._LOS.userSignup({ User: this.SignupForm?.value }).subscribe(
+      {
+        next: (data: any) => {
+          console.log(data);
+          this._GS
+            .openErrorMsg(
+              data.statusMessage
+            );
+          this.router.navigateByUrl(`/login`);
+        },
+        error: (error: any) => {
+          console.log(error);
+          this._GS
+            .openErrorMsg(
+              error.statusMessage
+            );
+        }
+      }
+    );
   }
+
 }

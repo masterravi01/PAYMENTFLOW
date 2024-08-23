@@ -7,10 +7,11 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="//vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap')
   </style>
-  <script src="https://accounts.google.com/gsi/client" async></script>
+  <script src="https://accounts.google.com/gsi/client" async=""></script>
   <script>
     function decodeJWTToken(token) {
       return JSON.parse(atob(token.split(".")[1]));
@@ -19,17 +20,21 @@
       // to decode the credential response.
       const responsePayload = decodeJWTToken(response.credential);
       sessionStorage.setItem("loggedInUser", JSON.stringify(responsePayload));
-      window.location.href = "/loginop/signup";
+      window.location.href = "/signup";
     }
     function handleSignout() {
       google.accounts.id.disableAutoSelect();
     }    
   </script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
 </head>
 
 <body>
   <app-root></app-root>
+  <script src="//vjs.zencdn.net/8.3.0/video.min.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 
 </html>

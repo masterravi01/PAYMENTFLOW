@@ -6,9 +6,10 @@ export const environment = {
   production: false,
   url: 'https://paymentflow-frontend.vercel.app/',
   backendurl: 'https://paymentflow.vercel.app/rsp',
-  razor_key_id: "rzp_test_TCsXb2tz9OlpVk",
-  razor_key_secret: "5sUdCZ5cP457FIZkF0fQnMmS",
-  DECRYPT: "rsp2208shahi3122"
+  socketurl: 'https://paymentflow.vercel.app',
+  razor_key_id: 'rzp_test_TCsXb2tz9OlpVk',
+  razor_key_secret: '5sUdCZ5cP457FIZkF0fQnMmS',
+  DECRYPT: 'rsp2208shahi3122',
 };
 
 /*

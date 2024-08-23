@@ -3,16 +3,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { io } from 'socket.io-client';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalService {
-
-  constructor(
-    private _http: HttpClient,
-    private _ModalService: NgbModal,
-  ) { }
+  constructor(private _http: HttpClient, private _ModalService: NgbModal) {}
   BaseURL: string = environment.backendurl;
   httpOptions = {
     withCredentials: true,
@@ -25,5 +23,19 @@ export class GlobalService {
     });
     cfm.componentInstance.name = str;
     return cfm;
+  }
+
+  private socket = io(environment.socketurl);
+
+  sendMessage(message: string, user: string) {
+    this.socket.emit('sendMessage', { message, user });
+  }
+
+  receiveMessages(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('receiveMessage', (data) => {
+        observer.next(data);
+      });
+    });
   }
 }
