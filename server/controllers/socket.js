@@ -4,6 +4,7 @@ const Message = schema.Message;
 
 const connection = async function (server) {
   const io = socketIo(server, {
+    "Access-Control-Allow-Credentials": true,
     cors: {
       origin: "*",
     },
